@@ -34,12 +34,12 @@ exports.findAll = function(req, res) {
   });
 };
 
-// exports.findById = function(req, res) {
-//   console.log(req.params.id,'req res select controller')
-//   Todo.findById(function (err, req) {
-//     console.log("controller");
-//     if(err) res.send(err);
-//     console.log("res", req);
-//     res.send(req);
-//   });
-// };
+exports.findById = function(req, res) {
+  console.log(req.params.id,'req res select controller')
+  Todo.findById(function (err, req) {
+    console.log("controller");
+    if(err) res.send(err);
+    console.log("res", req);
+    res.send(req);
+  }, req.params.id );
+};
