@@ -12,7 +12,7 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 // 포트 객체에 포트가 있으면 그거 사용 없으면 3000포트 사용
-var port = normalizePort(process.env.PORT || '8080');
+var port = normalizePort(process.env.PORT || '3030');
 // 서버가 실행될 포트를 설정하는 것 두번째 인자는 바로 위에서 받아온 포트가 들어간다
 app.set('port', port);
 
