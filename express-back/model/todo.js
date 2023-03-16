@@ -22,7 +22,7 @@ Todo.findAll = function(result) {
 };
 
 Todo.findById = function(result, id) {
-    mysql.query("select*from todolist_master where TODOLIST_MASTER_ID = " + id, function(err, res) {
+    mysql.query("select * from todolist_master where TODOLIST_MASTER_ID = " + id, function(err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);
@@ -31,6 +31,19 @@ Todo.findById = function(result, id) {
             result(null, res);
         }
     });
+}
+
+Todo.delete = function (result,id) {
+    mysql.query("delete from todolist_master where TODOLIST_MASTER_ID = " + id, function(err, res){
+        if(err) {
+            console.log('"error:', err);
+            result(null, err);
+        } else {
+            console.log('delete:', res);
+            result(null, res)
+        }
+
+    })
 }
 
 module.exports = Todo;
