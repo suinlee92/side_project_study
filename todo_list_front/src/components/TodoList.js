@@ -14,6 +14,7 @@ const TodoListBlock = styled.div`
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
+  // const count = todos.length;
   
   useEffect(()=> {
     const fetchTodolist = async()=> {
