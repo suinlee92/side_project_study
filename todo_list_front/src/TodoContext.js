@@ -1,5 +1,5 @@
 import { async } from 'q';
-import React, { useReducer, createContext, useContext, useRef } from 'react';
+import React, { useEffect, useState, useReducer, createContext, useContext, useRef } from 'react';
 import axios from 'axios';
 
 // const initialTodos = [
@@ -45,23 +45,24 @@ const TodoDispatchContext = createContext();
 const TodoNextIdContext = createContext();
 
 export function TodoProvider({ children }) {
+  const [todos, setTodos] = useState([]);
 
-  const fetchTodolist = async()=> {
+useEffect(()=> {
+  async function initTodolist() {
     const todolist = await axios.get('http://localhost:8080/todolist');
-    // return todolist;
+    return todolist;
   }
+  initTodolist().then((res) => {
+    console.log(res, 'res')
+    setTodos(res.data);
+  }).catch((error)=>{console.log('error')})
+}, [])
 
-  // async function initTodolist() {
-  //   const todolist = await Promise.all(axios.get('http://localhost:8080/todolist'));
-  //   return todolist;
-  // }
-  const [state, dispatch] = useReducer(todoReducer, fetchTodolist());
+  const [state, dispatch] = useReducer(todoReducer, todos);
   const nextId = useRef(5);
 
-console.log(state, 'state')
-
   return (
-    <TodoStateContext.Provider value={state}>
+    <TodoStateContext.Provider value={todos}>
       <TodoDispatchContext.Provider value={dispatch}>
         <TodoNextIdContext.Provider value={nextId}>
           {children}

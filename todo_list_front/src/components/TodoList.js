@@ -13,16 +13,17 @@ const TodoListBlock = styled.div`
 
 
 function TodoList() {
-  const [todos, setTodos] = useState([]);
+  const todos = useTodoState();
+  // const [todos, setTodos] = useState([]);
   // const count = todos.length;
   
-  useEffect(()=> {
-    const fetchTodolist = async()=> {
-      const todolist = await axios.get('http://localhost:8080/todolist');
-      setTodos(todolist.data);
-    }
-    fetchTodolist();
-  }, []);
+  // useEffect(()=> {
+  //   const fetchTodolist = async()=> {
+  //     const todolist = await axios.get('http://localhost:8080/todolist');
+  //     setTodos(todolist.data);
+  //   }
+  //   fetchTodolist();
+  // }, []);
 
   return (
     <TodoListBlock>
